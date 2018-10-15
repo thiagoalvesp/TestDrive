@@ -12,6 +12,13 @@ namespace TestDrive
         public MainPage()
         {
             InitializeComponent();
+
+            ListViewVeiculos.ItemsSource = new string[] 
+            {
+                "Azera V6",
+                "Fista 2.0",
+                "HB20 S"
+            };
         }
     }
 }

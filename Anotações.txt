@@ -1,3 +1,8 @@
 -Layouts
 StackLayout - Empilha uma informação em cima da outra.
 Grid - Apresenta as informações em grade
+<Grid.ColumnDefinitions>
+<Grid.RowDefinitions>
+
+ListView - Lista
+propriedade = ItemSource
