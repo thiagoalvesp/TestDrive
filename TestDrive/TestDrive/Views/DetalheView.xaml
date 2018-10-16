@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="{Binding Veiculo.Nome}"
+             x:Class="TestDrive.Views.DetalheView">
+    <Label Text="Esta é a página de detalhe"
+           VerticalOptions="CenterAndExpand"
+           HorizontalOptions="Center"/>
+    <Button x:Name="buttonProximo" 
+            Text="Próximo" 
+            Clicked="buttonProximo_Clicked"
+            VerticalOptions="End"/>
+</ContentPage>

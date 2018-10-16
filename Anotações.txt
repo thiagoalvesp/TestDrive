@@ -20,3 +20,6 @@ propriedade = ItemSource
         </FormattedString>
     </Label.FormattedText>
 </Label>
+
+---Navegação
+MainPage = NavigationPage() para iniciar a navegação no app
