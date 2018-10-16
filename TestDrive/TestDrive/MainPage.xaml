@@ -4,12 +4,17 @@
              xmlns:local="clr-namespace:TestDrive"
              x:Class="TestDrive.MainPage">
     
-    <ListView x:Name="ListViewVeiculos" ItemsSource="{Binding Veiculos}">
+    <ListView x:Name="ListViewVeiculos" Margin="25" ItemsSource="{Binding Veiculos}"
+              ItemTapped="ListViewVeiculos_ItemTapped">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <ViewCell.View>
-                        <Label Text="{Binding Nome}"></Label>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Nome}" FontSize="20" VerticalTextAlignment="Center"></Label>
+                            <Label Text="-" VerticalTextAlignment="Center"></Label>
+                            <Label Text="{Binding PrecoFormatado}" FontAttributes="Italic" VerticalTextAlignment="Center"></Label>
+                        </StackLayout>
                     </ViewCell.View>   
                 </ViewCell>
             </DataTemplate>

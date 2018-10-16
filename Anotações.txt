@@ -1,8 +1,22 @@
 -Layouts
 StackLayout - Empilha uma informação em cima da outra.
+ Orientation="Horizontal"
+
 Grid - Apresenta as informações em grade
 <Grid.ColumnDefinitions>
 <Grid.RowDefinitions>
 
 ListView - Lista
 propriedade = ItemSource
+
+
+---Label formatado
+<Label>
+    <Label.FormattedText>
+        <FormattedString>
+            <Span Text="Telefone:" FontAttributes="Bold"/>
+            <Span Text="12413122" ForegroundColor="Red" />
+            <Span Text="(Horário de funcionamento: Dias úteis e sábados das 8h às 22h)"/>
+        </FormattedString>
+    </Label.FormattedText>
+</Label>
