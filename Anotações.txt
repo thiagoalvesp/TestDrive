@@ -23,3 +23,15 @@ propriedade = ItemSource
 
 ---Navegação
 MainPage = NavigationPage() para iniciar a navegação no app
+
+--TwoWay
+OnPropertyChanged()
+
+--
+EntryCell
+ViewCell
+DatePicker
+TimePicker
+
+
+---Curso 2
