@@ -3,49 +3,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestDrive.Models;
+using TestDrive.ViewModels;
 using Xamarin.Forms;
 
 namespace TestDrive.Views
 {
-    public class Veiculo
-    {
-        public string Nome { get; set; }
-        public decimal Preco { get; set; }
-        public string PrecoFormatado
-        {
-            get { return $"R$ {Preco}"; }
-        }
-    }
+ 
 
     public partial class ListagemView : ContentPage
     {
-        public List<Veiculo> Veiculos { get; set; }
+
+        public ListagemViewModel ViewModel { get; set; }
+
         public ListagemView()
         {
             InitializeComponent();
-
-            Veiculos = new List<Veiculo>
-            {
-                new Veiculo{Nome= "Azera V6",Preco = 60000},
-                new Veiculo{Nome= "Fiesta 2.0",Preco = 50000},
-                new Veiculo{Nome= "HB20 S",Preco = 40000}
-            };
-
             //ListViewVeiculos.ItemsSource = Veiculos;
+            this.ViewModel = new ListagemViewModel();
+            this.BindingContext = this.ViewModel;
+        }
 
-            this.BindingContext = this;
+        //private void ListViewVeiculos_ItemTapped(object sender, ItemTappedEventArgs e)
+        //{
+        //    var veiculo = (Veiculo)e.Item;
+
+        //    //DisplayAlert("Test Drive",
+        //    //    $"Você tocou no modelo '{veiculo.Nome}', que custa {veiculo.PrecoFormatado}","OK");
+
+        //    Navigation.PushAsync(new DetalheView(veiculo));
+
+        //}
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            MessagingCenter.Subscribe<Veiculo>(this, "VeiculoSelecionado", 
+                (msg) =>
+                {
+                    Navigation.PushAsync(new DetalheView(msg));
+                });
+
+            await this.ViewModel.GetVeiculos();
 
         }
 
-        private void ListViewVeiculos_ItemTapped(object sender, ItemTappedEventArgs e)
+        protected override void OnDisappearing()
         {
-            var veiculo = (Veiculo)e.Item;
-
-            //DisplayAlert("Test Drive",
-            //    $"Você tocou no modelo '{veiculo.Nome}', que custa {veiculo.PrecoFormatado}","OK");
-
-            Navigation.PushAsync(new DetalheView(veiculo));
-
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<Veiculo>(this, "VeiculoSelecionado");
         }
     }
 }

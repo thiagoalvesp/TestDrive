@@ -35,3 +35,15 @@ TimePicker
 
 
 ---Curso 2
+
+MVVM
+Facilidade de manutenção
+Testabilidade
+Extensibilidade
+
+View = Ui
+ViewModel = Lógica de apresentação
+Model = Lógica e Dados de Negócios
+
+SelectedItem
+MessagingCenter
