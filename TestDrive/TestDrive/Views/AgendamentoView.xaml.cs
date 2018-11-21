@@ -22,19 +22,38 @@ namespace TestDrive.Views
             this.BindingContext = this.ViewModel;
         }
 
-        protected override void OnAppearing()
+        protected  override  void OnAppearing()
         {
             base.OnAppearing();
-            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento", (msg) =>
+            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento", async (msg) =>
             {
-                DisplayAlert("Agendamento",
-                $"Veiculo: {msg.Veiculo.Nome}" +
-                $"\nNome: {msg.Nome}" +
-                $"\nFone: {msg.Fone}" +
-                $"\nE-mail: {msg.Email}" +
-                $"\nData Agendamento: {msg.DataAgendamento.ToString("dd/MM/yyyy")}" +
-                $"\nHora Agendamento: {msg.HoraAgendamento}",
-                "OK");
+                var agendar = await DisplayAlert("Salvar Agendamento", "Deseja mesmo enviar o agendamento?", 
+                    "Sim", "Não");
+
+                if (agendar)
+                {
+
+                    ViewModel.SalvarAgendamento();
+
+                   //await DisplayAlert("Agendamento",
+                   //$"Veiculo: {msg.Veiculo.Nome}" +
+                   //$"\nNome: {msg.Nome}" +
+                   //$"\nFone: {msg.Fone}" +
+                   //$"\nE-mail: {msg.Email}" +
+                   //$"\nData Agendamento: {msg.DataAgendamento.ToString("dd/MM/yyyy")}" +
+                   //$"\nHora Agendamento: {msg.HoraAgendamento}",
+                   //"OK");
+                }
+            });
+
+            MessagingCenter.Subscribe<Agendamento>(this, "SucessoAgendamento", (msg) =>
+            {
+                DisplayAlert("Agendamento", "Agendamento salvo com sucesso!", "OK");
+            });
+
+            MessagingCenter.Subscribe<ArgumentException>(this, "FalhaAgendamento", (msg) =>
+            {
+                DisplayAlert("Agendamento", "Falha ao agendar o test drive!", "OK");
             });
         }
 
@@ -42,6 +61,8 @@ namespace TestDrive.Views
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<Agendamento>(this, "Agendamento");
+            MessagingCenter.Unsubscribe<Agendamento>(this, "SucessoAgendamento");
+            MessagingCenter.Unsubscribe<ArgumentException>(this, "FalhaAgendamento");
         }
 
         //private void Button_Clicked(object sender, EventArgs e) => DisplayAlert("Agendamento",
