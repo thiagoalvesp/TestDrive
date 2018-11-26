@@ -7,11 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDrive.Android", "TestDr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDrive.iOS", "TestDrive\TestDrive.iOS\TestDrive.iOS.csproj", "{BEFA4A23-5F1E-4380-AA71-EBC54F20CD81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDrive", "TestDrive\TestDrive\TestDrive.csproj", "{CE4612D8-6C8C-45F6-8A40-78AFB7AF1C0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDrive", "TestDrive\TestDrive\TestDrive.csproj", "{CE4612D8-6C8C-45F6-8A40-78AFB7AF1C0C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{4ECE6794-2258-4EA3-8BA2-3CAA37DD8410}"
 	ProjectSection(SolutionItems) = preProject
 		Anotações.txt = Anotações.txt
+		..\..\..\Downloads\Video1.4_01_mvvm.png = ..\..\..\Downloads\Video1.4_01_mvvm.png
 	EndProjectSection
 EndProject
 Global
