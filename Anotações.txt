@@ -47,3 +47,12 @@ Model = Lógica e Dados de Negócios
 
 SelectedItem
 MessagingCenter
+
+
+
+---Api Android
+ //Intent = Intenções
+ //Activity = Atividades
+
+ Projeto Raiz = DependencyService
+ Projeto Droid = Dependency

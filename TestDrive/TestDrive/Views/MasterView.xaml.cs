@@ -28,6 +28,11 @@ namespace TestDrive.Views
             MessagingCenter.Subscribe<Usuario>(this, "SucessoSalvarUsuario", (usuario) => {
                 this.CurrentPage = Children[0];
             });
+
+            MessagingCenter.Subscribe<InvalidOperationException>(this, "CameraError", async (exp) => {
+                await DisplayAlert("Ops", exp.Message, "OK");
+            });
+
         }
 
         protected override void OnDisappearing()
@@ -35,6 +40,8 @@ namespace TestDrive.Views
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<Usuario>(this, "EditarPefil");
             MessagingCenter.Unsubscribe<Usuario>(this, "SucessoSalvarUsuario");
+            MessagingCenter.Unsubscribe<InvalidOperationException>(this, "CameraError");
+
         }
     }
 }

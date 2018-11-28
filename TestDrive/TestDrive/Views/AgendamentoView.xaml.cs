@@ -46,14 +46,16 @@ namespace TestDrive.Views
                 }
             });
 
-            MessagingCenter.Subscribe<Agendamento>(this, "SucessoAgendamento", (msg) =>
+            MessagingCenter.Subscribe<Agendamento>(this, "SucessoAgendamento", async (msg) =>
             {
-                DisplayAlert("Agendamento", "Agendamento salvo com sucesso!", "OK");
+                await DisplayAlert("Agendamento", "Agendamento salvo com sucesso!", "OK");
+                await Navigation.PopToRootAsync();
             });
 
-            MessagingCenter.Subscribe<ArgumentException>(this, "FalhaAgendamento", (msg) =>
+            MessagingCenter.Subscribe<ArgumentException>(this, "FalhaAgendamento", async (msg) =>
             {
-                DisplayAlert("Agendamento", "Falha ao agendar o test drive!", "OK");
+                await DisplayAlert("Agendamento", "Falha ao agendar o test drive!", "OK");
+                await Navigation.PopToRootAsync();
             });
         }
 

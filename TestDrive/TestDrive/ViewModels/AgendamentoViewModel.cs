@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
+using TestDrive.Data;
 using TestDrive.Models;
 using Xamarin.Forms;
 
@@ -107,7 +108,10 @@ namespace TestDrive.ViewModels
 
             var conteudo = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resposta = await client.PostAsync(URL_POST_AGENDAMENTO,conteudo);
+            var resposta = await client.PostAsync(URL_POST_AGENDAMENTO, conteudo);
+
+            SalvarAgendamentoDB();
+
             if (resposta.IsSuccessStatusCode)
             {
                 MessagingCenter.Send<Agendamento>(this.Agendamento, "SucessoAgendamento");
@@ -116,8 +120,16 @@ namespace TestDrive.ViewModels
             {
                 MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FalhaAgendamento");
             }
-            
+
         }
 
+        private void SalvarAgendamentoDB()
+        {
+            using (var conexao = DependencyService.Get<ISQLite>().PegarConexao())
+            {
+                AgendamentoDAO dao = new AgendamentoDAO(conexao);
+                dao.Salvar(new Agendamento(Nome, Fone, Email, Veiculo.Nome, Veiculo.Preco));
+            }
+        }
     }
 }
