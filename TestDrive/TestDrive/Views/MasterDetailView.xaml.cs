@@ -20,5 +20,31 @@ namespace TestDrive.Views
             this.usuario = usuario;
             this.Master = new MasterView(usuario);
 		}
-	}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MessagingCenter.Subscribe<Usuario>(this, "MeusAgendamentos",
+                (usuario) => {
+                    this.Detail = new NavigationPage(new AgendamentosUsuarioView());
+                    this.IsPresented = false;
+                });
+
+            MessagingCenter.Subscribe<Usuario>(this, "NovoAgendamento",
+            (usuario) => {
+                this.Detail = new NavigationPage(new ListagemView());
+                this.IsPresented = false;
+            });
+
+            
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<Usuario>(this, "MeusAgendamentos");
+            MessagingCenter.Unsubscribe<Usuario>(this, "NovoAgendamento");
+            
+        }
+    }
 }

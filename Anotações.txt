@@ -56,3 +56,8 @@ MessagingCenter
 
  Projeto Raiz = DependencyService
  Projeto Droid = Dependency
+
+ ----
+ MasterDetailView = Pagina mestra
+	Masterview = menu (icone de hamburgue)
+	Navigation Page = as paginas que serão carregadas na navegação.
